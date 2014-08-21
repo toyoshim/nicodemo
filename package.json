@@ -1,0 +1,16 @@
+{
+  "name": "tma",
+  "version": "0.0.0",
+  "description": "demo site for tmalib",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"OK: no test\" && exit 0",
+    "postinstall": "./postinstall.sh"
+  },
+  "author": "toyoshim@gmail.com",
+  "license": "New BSD",
+  "dependencies": {
+    "express": "^4.8.5",
+    "logfmt": "^1.1.2"
+  }
+}
