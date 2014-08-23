@@ -1,0 +1,87 @@
+<html>
+<head><title>Nicofarre test</title></head>
+<body style="margin: 0; cursor: none">
+<script src="../tmalib/380e91751371/tma.js"></script>
+<script>
+var controller = {};
+controller.volume = [0.0, 0.0];
+var emulate = true;
+document.body.addEventListener('keydown', function (e) {
+  switch (e.which) {
+    case 70:  // f
+      document.body.webkitRequestFullscreen();
+      break;
+    case 72:  // h
+      controller.volume[1] -= 0.01;
+      break;
+    case 74:  // j
+      controller.volume[0] -= 0.01;
+      break;
+    case 75:  // k
+      controller.volume[0] += 0.01;
+      break;
+    case 76:  // l
+      controller.volume[1] += 0.01;
+      break;
+    case 88: // x
+      emulate = !emulate;
+      break;
+  }
+});
+tma.extlibs = [ '../../gl-matrix.js', 'ext/mv/MajVj.js' ];
+tma.onload = function () {
+  var width = 1920 / 4;
+  var height = 1080 / 4;
+  var vj = new MajVj(width, height, true);
+  vj.loadAllPlugins().then(function () {
+    var stage = vj.create('frame', 'nicofarre',
+                        { led: MajVj.frame.nicofarre.LED_STAGE_AND_BACK,
+                          mirror: MajVj.frame.nicofarre.MIRROR_ON_LEFT,
+                          frames: [
+                            { name: 'sandbox', options: { id: '18922.0' } }
+                          ]});
+    var wall = vj.create('frame', 'nicofarre',
+                        { led: MajVj.frame.nicofarre.LED_WALL_BOTH,
+                          mirror: MajVj.frame.nicofarre.MIRROR_ON_RIGHT,
+                          frames: [
+                            { name: 'sandbox', options: { id: '18918.0' } }
+                          ]});
+    var side = vj.create('frame', 'nicofarre',
+                        { led: MajVj.frame.nicofarre.LED_FRONT_BOTH,
+                          mirror: MajVj.frame.nicofarre.MIRROR_ON_RIGHT,
+                          frames: [
+                            { name: 'sandbox', options: { id: '18451.0' } }
+                          ]});
+    var ceil = vj.create('frame', 'nicofarre',
+                        { led: MajVj.frame.nicofarre.LED_CEILING,
+                          frames: [
+                            { name: 'sandbox', options: { id: '18568.0' } }
+                          ]});
+    var fx = vj.create('effect', 'nicofarre');
+    fx.setController(controller);
+    var fbo = vj.screen().createFrameBuffer(width, height);
+    vj.screen().setAlphaMode(false);
+    vj.run(function (delta) {
+      if (emulate)
+        fbo.bind();
+      vj.screen().fillColor(0.0, 0.0, 0.0, 1.0);
+      stage.draw(delta);
+      wall.draw(delta);
+      side.draw(delta);
+      ceil.draw(delta);
+      if (emulate) {
+        vj.screen().bind();
+        vj.screen().fillColor(0.0, 0.0, 0.0, 1.0);
+        fx.draw(delta, fbo.texture);
+      }
+      vj.screen().flush();
+    });
+    window.onresize = function () {
+      vj.onresize();
+      fx.onresize(vj.aspect());
+    };
+  }, function (e) { console.log('plugin load error: ' + e); });
+};
+</script>
+</body>
+</html>

@@ -8,9 +8,6 @@ controller.volume = [0.0, 0.0];
 var emulate = true;
 document.body.addEventListener('keydown', function (e) {
   switch (e.which) {
-    case 32:  // space
-      emulate = !emulate;
-      break;
     case 70:  // f
       document.body.webkitRequestFullscreen();
       break;
@@ -25,6 +22,9 @@ document.body.addEventListener('keydown', function (e) {
       break;
     case 76:  // l
       controller.volume[1] += 0.01;
+      break;
+    case 88: // x
+      emulate = !emulate;
       break;
   }
 });

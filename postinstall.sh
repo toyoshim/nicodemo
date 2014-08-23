@@ -2,6 +2,8 @@
 
 cd static
 mkdir -p tmalib
-git clone https://code.google.com/p/tmalib/ tmalib/91903e03995a && cd tmalib/91903e03995a && git checkout 91903e03995a
+for rev in 91903e03995a 380e91751371; do
+  git clone https://code.google.com/p/tmalib/ tmalib/$rev && (cd tmalib/$rev; git checkout $rev)
+done
 
 exit 0
