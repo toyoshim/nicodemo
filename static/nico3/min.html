@@ -30,9 +30,9 @@ document.body.addEventListener('keydown', function (e) {
       console.log(e.which);
   }
 });
-tma.extlibs = [ 'ext/gl-matrix.js', 'ext/mv/MajVj.js' ];
+tma.extlibs = [ '../../gl-matrix.js', 'ext/mv/MajVj.js' ];
 tma.onload = function () {
-  var r = 1;
+  var r = 4;
   var width = 1920 / r;
   var height = 1080 / r;
   var vj = new MajVj(width, height, true);
