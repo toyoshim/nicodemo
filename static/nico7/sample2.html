@@ -1,0 +1,49 @@
+<html>
+<head><title>Nicofarre test</title></head>
+<body style="margin: 0; cursor: none">
+<script src="../tmalib/nico7/tma.js"></script>
+<script src="../tmalib/nico7/example/mv_common.js"></script>
+<script>
+
+var name = 'roll';
+
+var main = _(function () {
+  var r = 1;
+  var width = 1920 / r;
+  var height = 1080 / r;
+  var vj = new MajVj(width, height, true);
+  var scene = vj.create('scene', name);
+  var fx = vj.create('effect', 'nicofarre', { front: false });
+  fx.setController(controller);
+  var fbo = vj.screen().createFrameBuffer(width, height);
+  vj.screen().setAlphaMode(false);
+  vj.run(function (delta) {
+    if (emulate)
+      fbo.bind();
+    vj.screen().fillColor(0.0, 0.0, 0.0, 1.0);
+    scene.draw(delta);
+    if (emulate) {
+      vj.screen().bind();
+      vj.screen().fillColor(0.0, 0.0, 0.0, 1.0);
+      fx.draw(delta, fbo.texture);
+    }
+    vj.screen().flush();
+  });
+  window.onresize = function () {
+    vj.onresize();
+    fx.onresize(vj.aspect());
+  };
+});
+
+tma.extlibs = [ '../../gl-matrix.js', 'ext/mv/MajVj.js' ];
+tma.onload = function () {
+  MajVj.loadAllPlugins().then(function () {
+    MajVj.loadPlugin('scene', name).then(function () {
+      main();
+    }, function (e) { console.log('scene load error: ' + e); });
+  }, function (e) { console.log('plugin load error: ' + e); });
+};
+  
+</script>
+</body>
+</html>
