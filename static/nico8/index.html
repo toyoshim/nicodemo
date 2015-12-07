@@ -55,7 +55,12 @@ var majvjReady = function () {
 tma.onload = function () {
   vj = new MajVj(960, 540, false);
   MajVj.loadAllPlugins().then(function() {
-    MajVj.loadPlugin('scene', 'perfume1mm').then(majvjReady);
+    MajVj.loadPlugin('scene', 'perfume1mm').then(function () {
+      MajVj.loadImageFrom('moon.png').then(function(image) {
+      MajVj.scene.perfume1mm._moon = image;
+      majvjReady();
+      });
+    });
   });
 };
 </script>
