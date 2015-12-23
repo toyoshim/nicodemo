@@ -11,6 +11,10 @@
   "license": "New BSD",
   "dependencies": {
     "express": "^4.8.5",
-    "logfmt": "^1.1.2"
+    "logfmt": "^1.1.2",
+    "momolog": "0.1.0"
+  },
+  "engines": {
+    "node": "4.2.1"
   }
 }
