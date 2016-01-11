@@ -1,8 +1,10 @@
 var express = require('express');
+var cors = require('cors');
 var logfmt = require('logfmt');
 var momolog = require('momolog');
-var app = express();
 
+var app = express();
+app.use(cors());
 app.use(logfmt.requestLogger());
 
 var log = momolog();
