@@ -13,7 +13,7 @@
     "cors": "^2.7.1",
     "express": "^4.8.5",
     "logfmt": "^1.1.2",
-    "momolog": "0.1.0"
+    "momolog": "0.1.1"
   },
   "engines": {
     "node": "4.2.1"

@@ -7,11 +7,10 @@ var app = express();
 app.use(cors());
 app.use(logfmt.requestLogger());
 
-var log = momolog();
-app.use(log.morgan());
-
 var collection = process.env.DEBUG ? 'log-debug' : 'log';
-log.connect(process.env.MONGOLAB_URI, collection).then(function() {
+momolog.connect(process.env.MONGOLAB_URI, collection).then(function(logger) {
+  app.use(logger);
+
   app.use(express.static(__dirname + '/static'));
 
   var port = Number(process.env.PORT);
