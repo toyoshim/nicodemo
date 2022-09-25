@@ -1,0 +1,24 @@
+[submodule "tmalib/nico"]
+	path = tmalib/nico
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico2"]
+	path = tmalib/nico2
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico3"]
+	path = tmalib/nico3
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico4"]
+	path = tmalib/nico4
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico5"]
+	path = tmalib/nico5
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico6"]
+	path = tmalib/nico6
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico7"]
+	path = tmalib/nico7
+	url = https://github.com/toyoshim/tmalib.git
+[submodule "tmalib/nico8"]
+	path = tmalib/nico8
+	url = https://github.com/toyoshim/tmalib.git
